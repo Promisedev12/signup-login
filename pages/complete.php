@@ -18,7 +18,7 @@
         if (mysqli_num_rows($results)>0) {
           echo "<h1 class='text-center mt-5'>You have verified your account</h1>
           <div class='text-center'>
-            <a href='.login.php' class='btn btn-danger btn-lg'>Log In</a>
+            <a href='login.php' class='btn btn-danger btn-lg'>Log Out</a>
           </div>";
         }
         else{

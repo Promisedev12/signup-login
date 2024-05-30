@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
   $optOption = cleanData($_POST['options']);
   
 
-  $password = hashPassword($password);
+  
   require_once "connect.php";
 
   $sql = "SELECT * FROM user WHERE email = '$email' or fnum = '$fnum';";
