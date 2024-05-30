@@ -7,7 +7,7 @@ use Infobip\Model\SmsDestination;
 use Infobip\Model\SmsTextualMessage;
 
 function cleanData($data){
-    $data = trim($data);
+    $data = trim($data);              //function to clearn data
     $data = stripcslashes($data);
     $data = htmlspecialchars($data);
     return $data;
@@ -16,10 +16,11 @@ function hashPassword($data){
     $options = [
         "cost" => 6
     ];
-    $data = password_hash($data, PASSWORD_BCRYPT, $options);
+    $data = password_hash($data, PASSWORD_BCRYPT, $options);  //function to hass password
     return $data;
 }
 
+//function to send sms using infobip API
 function sendSMS($number, $messageContent){
 
   require_once __DIR__ . './vendorphone/autoload.php';
@@ -49,6 +50,8 @@ function sendSMS($number, $messageContent){
   }
     
  }
+
+ //function to send email using rapid API
 function sendEmail($emailAdress, $messageToSend){
     $curl = curl_init();
     curl_setopt_array($curl, [
@@ -82,6 +85,7 @@ function sendEmail($emailAdress, $messageToSend){
     if ($err) {
         echo "cURL Error #:" . $err;
     } else {
-        //echo $response;
+        // echo $response;
 }
 }
+
