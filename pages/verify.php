@@ -1,6 +1,6 @@
 <?php
 require_once "../global/global.php";
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET' ) {
   $fname = cleanData($_POST['fname']);
   $lname = cleanData($_POST['lname']);
   $email = cleanData($_POST['email']);
@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $password = cleanData($_POST['password']);
 
   $optOption = cleanData($_POST['options']);
-  $opt = random_int(10000, 99999);
+  
 
   $password = hashPassword($password);
   require_once "connect.php";
@@ -20,18 +20,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header("Location: ../signup.php?error=Email or Phone number already exist. log in instead");
   }
   else {
-    $query = "INSERT user VALUES('', '$fname', '$lname', '$email', '$fnum', '$password', '0');";
+    $query = "INSERT user VALUES('', '$fname', '$lname', '$email', '$fnum', '$password', '0', '$otp');";
     mysqli_query($conn, $query);
   }
-
- 
-
-  // $message = "Your verification code is: ". $otp;
-
- 
-  
-
-
+  $message = "Your verification code is: ". $otp;
+  if ($optOption == "fnum") {
+    sendSMS($fnum, $message);
+    
+  }
+  else {
+    sendEmail($email, $message);
+    
+  }
 }
   
 else{
@@ -56,13 +56,19 @@ else{
       <div class="row mt-5">
         <div class="col-6 m-auto ">
           <h2 class="text-center pt-3">Enter code</h2>
-          <p class="mt-4">Averification code was sent to </p>
-          <form action="otp.php" method="post">
+          <p class="mt-4">Averification code was sent</p>
+          <form action="complete.php" method="post">
+          <?php
+              if (isset($_GET['error'])) {
+                echo "<p class='bg-success text-white p-1 m-3'>".$_GET['error']."</p>";
+              }
+            ?>
           <div class="input-group mb-3">
               <input
                 type="text"
                 class="form-control"
                 name="code"
+                placeholder="Enter code"
               />
             </div>
             <div class=" mt-3 d-grid">
