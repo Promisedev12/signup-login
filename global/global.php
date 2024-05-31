@@ -12,12 +12,12 @@ function cleanData($data){
     $data = htmlspecialchars($data);
     return $data;
 }
-// function hashPassword($data){
-//     $options = [
-//         "cost" => 6
-//     ];
-//     $data = password_hash($data, PASSWORD_BCRYPT, $options);  //function to hass password
-//     return $data;
+function hashPassword($data){
+    $options = [
+        "cost" => 6
+    ];
+    $data = password_hash($data, PASSWORD_BCRYPT, $options);  //function to hass password
+    return $data;
 }
 
 $otp = random_int(10000, 99999); 

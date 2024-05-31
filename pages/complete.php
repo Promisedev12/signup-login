@@ -11,20 +11,30 @@
     <?php
       require_once "../global/global.php";
       require "./connect.php";
-      if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+      session_start();
+
+      $email =  $_SESSION["userEmail"];
+      $fnum = $_SESSION['userNumber'];
+      
+
         $code = cleanData($_POST['code']);
-        $query = "SELECT * FROM user WHERE otp = '$code'";
+        $query = "SELECT * FROM user WHERE email = '$email' or fnum = '$fnum';";
         $results = mysqli_query($conn, $query);
-        if (mysqli_num_rows($results)>0) {
+
+        $userInfo = mysqli_fetch_assoc($results);
+
+        
+        if ($userInfo['otp'] == $code) {
           echo "<h1 class='text-center mt-5'>You have verified your account</h1>
           <div class='text-center'>
-            <a href='login.php' class='btn btn-danger btn-lg'>Log Out</a>
+            <a href='login.php' class='btn btn-danger btn-lg'>Log In</a>
           </div>";
+
+
+          
         }
-        else{
-          header("Location: ./.php");
-        }
-      }
+        
+      
     ?>
   </body>
 </html>

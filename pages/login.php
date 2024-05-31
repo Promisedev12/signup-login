@@ -21,6 +21,7 @@
            
             <div class="input-group mb-3">
               <input
+                required
                 type="text"
                 placeholder="Email or Phone number"
                 class="form-control"
@@ -30,6 +31,7 @@
             
             <div class="input-group mb-3">
               <input
+                required
                 type="password"
                 placeholder="Password"
                 class="form-control"

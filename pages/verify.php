@@ -6,9 +6,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
   $email = cleanData($_POST['email']);
   $fnum = cleanData($_POST['fnum']);
   $password = cleanData($_POST['password']);
-
-  $optOption = cleanData($_POST['options']);
+  $password = hashPassword($password);
   
+  $optOption = cleanData($_POST['options']);
+  session_start();
+  
+  $_SESSION["userEmail"] = $email;
+  $_SESSION['userNumber'] = $fnum;
 
   
   require_once "connect.php";
@@ -65,6 +69,7 @@ else{
             ?>
           <div class="input-group mb-3">
               <input
+              required
                 type="text"
                 class="form-control"
                 name="code"

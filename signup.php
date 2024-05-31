@@ -22,6 +22,7 @@
             ?>
             <div class="input-group mb-3">
               <input
+              required
                 type="text"
                 placeholder="First Name"
                 class="form-control"
@@ -30,6 +31,7 @@
             </div>
             <div class="input-group mb-3">
               <input
+              required
                 type="text"
                 placeholder="Last Name"
                 class="form-control"
@@ -38,6 +40,7 @@
             </div>
             <div class="input-group mb-3">
               <input
+              required
                 type="Email"
                 placeholder="Email"
                 class="form-control"
@@ -46,6 +49,7 @@
             </div>
             <div class="input-group mb-3">
               <input
+              required
                 type="number"
                 placeholder="Phone Number"
                 class="form-control"
@@ -54,6 +58,7 @@
             </div>
             <div class="input-group mb-3">
               <input
+              required
                 type="password"
                 placeholder="Password"
                 class="form-control"
@@ -62,7 +67,8 @@
               
             </div>
             <p class="mt-4">Chose a verification method</p>
-            <select name="options" class="form-select mb-3"  id="">
+            <select
+            required name="options" class="form-select mb-3"  id="">
                 <option value="fnum">Phone number</option>
                 <option value="email">Email </option>
              </select>
